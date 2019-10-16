@@ -10,16 +10,16 @@ const options = {
 		'Content-Type': 'application/json'
 	})
 }
-
 const params = {
-	'limit': 50,
+	'limit': 10,
 	'categories': 'bars',
-	'radius': 20000,
-	'longitude': '-86.641051',
-	'latitude': '41.936442'
+	'radius': 1000,
+	'latitude': null,
+	'longitude': null,
+	'open_now': true,
+	'price': '1',
 }
 
-Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
 
 
@@ -35,53 +35,69 @@ function getCoordinates(){
 
 }
 
-function renderResults(data){
-	// getCoordinates()
+function createUrl(data){
+	//builds URL into format that can be added to google maps search
 	let addressUrl = $(data.businesses[0].location.display_address)
 	console.log(addressUrl)
 	let replacedAddress = encodeURIComponent(addressUrl[0]) + '%20'+ encodeURIComponent(addressUrl[1])
 	console.log(replacedAddress)
+	return replacedAddress;
+}
 
+function renderResults(data){
+	// getCoordinates()
+
+	//creates URL used to link to directions.
+	let newAddress = createUrl(data)
+
+	//current version of manipulating DOM
 	$('.main-header').text('Here are the closest bars to you:')
 	$('.barImg').prop('src', `${data.businesses[0].image_url}`)
 	$('.barName').text(`${data.businesses[0].name}`)
 	$('.website').prop('href', `${data.businesses[0].url}`)
-	$('.addressLookUp').prop('href', `https://www.google.com/maps/dir//${replacedAddress}`)
+	$('.addressLookUp').prop('href', `https://www.google.com/maps/dir//${newAddress}`)
 
-	// $("#results").text(data.businesses[0].name)
+	$('.hidden').removeClass('hidden')
 }
 
-// function success(position) {
-//   let crd = position.coords;
+function success(position) {
+  let crd = position.coords;
+	let lat = crd.latitude;
+	let lng = crd.longitude;
 
+	params.latitude = lat
+	params.longitude = lng
 
-//   // console.log('Your current position is:');
-//   // console.log(`Latitude : ${crd.latitude}`);
-//   // console.log(`Longitude: ${crd.longitude}`);
-//   // console.log(`More or less ${crd.accuracy} meters.`);
-// }
+	console.log('Your current position is:');
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+	console.log(`More or less ${crd.accuracy} meters.`);
+	
+	Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+}
+	
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
 
-// function error(err) {
-//   console.warn(`ERROR(${err.code}): ${err.message}`);
-// }
-
-// navigator.geolocation.getCurrentPosition(success, error);
-
-
-
-
+navigator.geolocation.getCurrentPosition(success, error);
 
 
 
 $(document).ready(function(){
 	$("#button").click(function(){
+	
 		fetch(url, options)
 			.then(res => res.json())
-			// .then(data => console.log(data))
 			.then(data => {
 				console.log(data);
 				renderResults(data);
-				// $("#results").text(data.businesses[0].name)
 			})
 	});
 });
+
+// sorting example
+
+// let numbers = [4, 2, 5, 1, 3];
+// numbers.sort((a, b) => a - b);
+// console.log(numbers);
