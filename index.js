@@ -13,7 +13,7 @@ const options = {
 const params = {
 	'limit': 10,
 	'categories': 'bars',
-	'radius': 1000,
+	'radius': 20000,
 	'latitude': null,
 	'longitude': null,
 	'open_now': true,
@@ -27,15 +27,20 @@ function setPrice(){
 
 }
 
+// function roundNumber(decimal){
+// 	return Math.round(number(decimal));
+// }
+
 function createResultsHTML(biz){
 	let newAddress = createUrl(biz)
 	const gMapsUrl = 'https://www.google.com/maps/dir//'
-	
+	// console.log(biz.distance)
+	// let roundNumDistance = roundNumber(biz.distance)
 		return biz.businesses.map((biz, index) => {
 			return `<li><img class="barImg" id="barImg${index+1}" src="${biz.image_url}" alt="Bar Image">
 			<h4 class="barName">${index+1}. ${biz.name}</h4>
 			<p class="rating">Rating: ${biz.rating}</p>
-			<p class="distance">Distance: ${biz.distance}</p>
+			<p class="distance">Distance: ${biz.distance} Meters</p>
 			<p class="price">Price: ${biz.price}</p>
 			<p class="barDescription"></p>
 			<a class="website" target="_blank" href="${biz.url}">Website</a>
