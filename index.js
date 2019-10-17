@@ -56,22 +56,10 @@ function createUrl(data){
 function renderResults(data){
 	const resultsHTML = createResultsHTML(data);
 
-	$('#results').html(resultsHTML);
-
-	// getCoordinates()
-
-	//creates URL used to link to directions.
-	// let newAddress = createUrl(data)
-
-	// //current version of manipulating DOM
-	// $('.main-header').text('Here are the closest bars to you:')
-	// $('.barImg').prop('src', `${data.businesses[0].image_url}`)
-	// $('.barName').text(`${data.businesses[0].name}`)
-	// $('.website').prop('href', `${data.businesses[0].url}`)
-	// $('.addressLookUp').prop('href', `https://www.google.com/maps/dir//${newAddress}`)
-
-
+	$('#resultsList').html(resultsHTML);
 	$('.hidden').removeClass('hidden')
+
+		// getCoordinates()
 }
 
 function success(position) {
@@ -93,8 +81,6 @@ function success(position) {
 			.then(res => res.json())
 			.then(data => {
 				console.log(data);
-				console.log(createResultsHTML(data));
-
 				renderResults(data);
 			})
 }
