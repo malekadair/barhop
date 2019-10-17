@@ -27,11 +27,20 @@ function setPrice(){
 
 }
 
-function createResultsHTML(){
-
+function createResultsHTML(biz){
+	let newAddress = createUrl(biz)
+	const gMapsUrl = 'https://www.google.com/maps/dir//'
+		return biz.businesses.map((biz, index) => {
+			return `<li><img class="barImg" id="barImg${index+1}" src="${biz.image_url}" alt="Bar Image">
+			<h4 class="barName">${index+1}. ${biz.name}</h4>
+			<!-- <img src="" alt="Bar rating"> -->
+			<p class="barDescription"></p>
+			<a class="website" target="_blank" href="${biz.url}">Website</a>
+			<a class="addressLookUp" target="_blank" href="${gMapsUrl}${newAddress}">Let's Barhop!</a></li>`
+		})
 }
 
-function getCoordinates(){
+function getCoordinatesData(){
 
 }
 
@@ -45,17 +54,22 @@ function createUrl(data){
 }
 
 function renderResults(data){
+	const resultsHTML = createResultsHTML(data);
+
+	$('#results').html(resultsHTML);
+
 	// getCoordinates()
 
 	//creates URL used to link to directions.
-	let newAddress = createUrl(data)
+	// let newAddress = createUrl(data)
 
-	//current version of manipulating DOM
-	$('.main-header').text('Here are the closest bars to you:')
-	$('.barImg').prop('src', `${data.businesses[0].image_url}`)
-	$('.barName').text(`${data.businesses[0].name}`)
-	$('.website').prop('href', `${data.businesses[0].url}`)
-	$('.addressLookUp').prop('href', `https://www.google.com/maps/dir//${newAddress}`)
+	// //current version of manipulating DOM
+	// $('.main-header').text('Here are the closest bars to you:')
+	// $('.barImg').prop('src', `${data.businesses[0].image_url}`)
+	// $('.barName').text(`${data.businesses[0].name}`)
+	// $('.website').prop('href', `${data.businesses[0].url}`)
+	// $('.addressLookUp').prop('href', `https://www.google.com/maps/dir//${newAddress}`)
+
 
 	$('.hidden').removeClass('hidden')
 }
@@ -74,25 +88,32 @@ function success(position) {
 	console.log(`More or less ${crd.accuracy} meters.`);
 	
 	Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+	fetch(url, options)
+			.then(res => res.json())
+			.then(data => {
+				console.log(data);
+				console.log(createResultsHTML(data));
+
+				renderResults(data);
+			})
 }
 	
 function error(err) {
+	
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
-navigator.geolocation.getCurrentPosition(success, error);
+// navigator.geolocation.getCurrentPosition(success, error);
+
+
+
 
 
 
 $(document).ready(function(){
 	$("#button").click(function(){
-	
-		fetch(url, options)
-			.then(res => res.json())
-			.then(data => {
-				console.log(data);
-				renderResults(data);
-			})
+		navigator.geolocation.getCurrentPosition(success, error);
 	});
 });
 
