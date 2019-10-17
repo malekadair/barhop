@@ -13,7 +13,7 @@ const options = {
 const params = {
 	'limit': 25,
 	'categories': 'bars',
-	'radius': 5000,
+	'radius': 40000,
 	'latitude': null,
 	'longitude': null,
 	'open_now': true,
