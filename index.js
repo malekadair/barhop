@@ -110,6 +110,11 @@ function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
+function renderCurrent(){
+	$('#results').addClass('hidden');
+	$('#current').removeClass('hidden');
+	
+}
 
 $(() => {
 	$('.priceForm').on('submit', function(e){
@@ -119,5 +124,6 @@ $(() => {
 	});
 	$('#results').on('click', '.addressLookUp', function(){
 		console.log('we made it this far. dont stop now!')
+		renderCurrent();
 	})
 })
