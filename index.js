@@ -17,7 +17,7 @@ const params = {
 	'latitude': null,
 	'longitude': null,
 	'open_now': true,
-	'price': '1',
+	'price': null,
 }
 
 
@@ -49,10 +49,6 @@ function createResultsHTML(biz){
 		})
 }
 
-function getCoordinatesData(){
-
-}
-
 function createUrl(data){
 	//builds URL into format that can be added to google maps search
 	let addressUrl = $(data[0].location.display_address)
@@ -75,7 +71,6 @@ function renderResults(data){
 	$('#resultsList').html(resultsHTML);
 	$('#results').removeClass('hidden')
 
-		// getCoordinates()
 }
 
 function success(position) {
@@ -85,19 +80,24 @@ function success(position) {
 	let lng = crd.longitude;
 
 	let priceVal = $('input[name=answer]:checked').val()
-console.log('priceeeee' + priceVal)
+
+	//sets price param to selected $ amount
 	params.price = priceVal;
 	
+	//sets lng/lat params to user's location
 	params.latitude = lat;
 	params.longitude = lng;
 
+	//console log for my own reference while coding
 	console.log('Your current position is:');
   console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude: ${crd.longitude}`);
 	console.log(`More or less ${crd.accuracy} meters.`);
 	
+	//builds url based on params object
 	Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
+	//fetches all important object of nearby businesses
 	fetch(url, options)
 			.then(res => res.json())
 			.then(data => {
@@ -110,22 +110,14 @@ function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
-// list.sort((a, b) => (a.color > b.color) ? 1 : -1)
-// let numbers = [4, 2, 5, 1, 3];
-// numbers.sort((a, b) => a - b);
-// console.log(numbers);
 
-
-
-
-
-$(document).ready(function(){
-	$(".priceForm").on('submit', function(e){
+$(() => {
+	$('.priceForm').on('submit', function(e){
 		e.preventDefault()
 		navigator.geolocation.getCurrentPosition(success, error);
 		$('.priceForm').addClass('hidden');
 	});
-	
-});
-
-// sorting example
+	$('#results').on('click', '.addressLookUp', function(){
+		console.log('we made it this far. dont stop now!')
+	})
+})
