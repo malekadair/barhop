@@ -34,7 +34,7 @@ function roundNumber(decimal){
 function createResultsHTML(biz){
 	const gMapsUrl = 'https://www.google.com/maps/dir//'
 	let newAddress = createUrl(biz)
-		return biz.businesses.map((biz, index) => {
+		return biz.map((biz, index) => {
 			
 			let roundNumDistance = roundNumber(biz.distance)
 
@@ -55,15 +55,20 @@ function getCoordinatesData(){
 
 function createUrl(data){
 	//builds URL into format that can be added to google maps search
-	let addressUrl = $(data.businesses[0].location.display_address)
+	let addressUrl = $(data[0].location.display_address)
 	console.log(addressUrl)
 	let replacedAddress = encodeURIComponent(addressUrl[0]) + '%20'+ encodeURIComponent(addressUrl[1])
 	console.log(replacedAddress)
 	return replacedAddress;
 }
 
+function sortResults(bizList) {
+	return bizList.businesses.sort((a, b) => (a.distance > b.distance) ? 1 : -1)
+}
+
 function renderResults(data){
-	const resultsHTML = createResultsHTML(data);
+	const sortedData = sortResults(data)
+	const resultsHTML = createResultsHTML(sortedData);
 
 	$('#resultsList').html(resultsHTML);
 	$('#results').removeClass('hidden')
@@ -72,7 +77,7 @@ function renderResults(data){
 }
 
 function success(position) {
-	$('.buttonRes').addClass('hidden');
+
   let crd = position.coords;
 	let lat = crd.latitude;
 	let lng = crd.longitude;
@@ -99,7 +104,10 @@ function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
-
+// list.sort((a, b) => (a.color > b.color) ? 1 : -1)
+// let numbers = [4, 2, 5, 1, 3];
+// numbers.sort((a, b) => a - b);
+// console.log(numbers);
 
 
 
@@ -108,12 +116,9 @@ function error(err) {
 $(document).ready(function(){
 	$("#button").click(function(){
 		navigator.geolocation.getCurrentPosition(success, error);
+		$('.buttonRes').addClass('hidden');
 	});
 	
 });
 
 // sorting example
-
-// let numbers = [4, 2, 5, 1, 3];
-// numbers.sort((a, b) => a - b);
-// console.log(numbers);
