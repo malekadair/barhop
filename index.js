@@ -20,13 +20,6 @@ const params = {
 	'price': null,
 }
 
-
-
-
-function setPrice(){
-
-}
-
 function roundNumber(decimal){
 	return Math.round(Number(decimal));
 }
@@ -68,17 +61,18 @@ function renderResults(data){
 	//creates HTML to be added to DOM
 	const resultsHTML = createResultsHTML(sortedData);
 
+	$('.holdPlease').addClass('hidden');
 	$('#resultsList').html(resultsHTML);
-	$('#results').removeClass('hidden')
+	$('#results').removeClass('hidden');
 
 }
 
 function success(position) {
-
+	//get's user's coordinates and sets to appropriate variables
   let crd = position.coords;
 	let lat = crd.latitude;
 	let lng = crd.longitude;
-
+	//get's pricepoint based on user input and sets to appropriate variable
 	let priceVal = $('input[name=answer]:checked').val()
 
 	//sets price param to selected $ amount
@@ -113,7 +107,9 @@ function error(err) {
 function renderCurrent(){
 	$('#results').addClass('hidden');
 	$('#current').removeClass('hidden');
-	
+	//needs "call it a night early" button 
+	//needs "find next bar" button
+
 }
 
 $(() => {
@@ -121,6 +117,7 @@ $(() => {
 		e.preventDefault()
 		navigator.geolocation.getCurrentPosition(success, error);
 		$('.priceForm').addClass('hidden');
+		$('.holdPlease').removeClass('hidden');
 	});
 	$('#results').on('click', '.addressLookUp', function(){
 		console.log('we made it this far. dont stop now!')
