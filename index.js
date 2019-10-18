@@ -66,12 +66,13 @@ function renderResults(data){
 	const resultsHTML = createResultsHTML(data);
 
 	$('#resultsList').html(resultsHTML);
-	$('.hidden').removeClass('hidden')
+	$('#results').removeClass('hidden')
 
 		// getCoordinates()
 }
 
 function success(position) {
+	$('.buttonRes').addClass('hidden');
   let crd = position.coords;
 	let lat = crd.latitude;
 	let lng = crd.longitude;
@@ -95,11 +96,9 @@ function success(position) {
 }
 	
 function error(err) {
-	
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
-// navigator.geolocation.getCurrentPosition(success, error);
 
 
 
@@ -110,6 +109,7 @@ $(document).ready(function(){
 	$("#button").click(function(){
 		navigator.geolocation.getCurrentPosition(success, error);
 	});
+	
 });
 
 // sorting example
