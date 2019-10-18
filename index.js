@@ -72,6 +72,7 @@ function success(position) {
   let crd = position.coords;
 	let lat = crd.latitude;
 	let lng = crd.longitude;
+	console.log (crd + lat + lng)
 	//get's pricepoint based on user input and sets to appropriate variable
 	let priceVal = $('input[name=answer]:checked').val()
 
@@ -112,6 +113,11 @@ function renderCurrent(){
 
 }
 
+function changePrice (){
+	$('.priceForm').removeClass('hidden');
+	$('#results').addClass('hidden');
+}
+
 $(() => {
 	$('.priceForm').on('submit', function(e){
 		e.preventDefault()
@@ -122,5 +128,9 @@ $(() => {
 	$('#results').on('click', '.addressLookUp', function(){
 		console.log('we made it this far. dont stop now!')
 		renderCurrent();
+	})
+	$('#results').on('click', '.changePriceBtn', function(){
+		console.log("change price button----ACTIVATE!")
+		changePrice();
 	})
 })
