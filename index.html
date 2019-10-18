@@ -12,25 +12,25 @@
         <h2 class="main-header">Ready to Barhop?</h2>
     </header>
 
-    <form class="priceForm buttonRes">
+    <form class="priceForm">
         <h3>Please note: Accepting location services is required in order to use this app. <br>
             Select a price and press "Submit" to find bars nearest to you</h3>
-        <fieldset required>
+        <fieldset>
             <legend>Price-point: </legend>
             <div class="priceOption">
-                <input type="radio" name="answer" id="price1" value="1"/>
+                <input type="radio" name="answer" id="price1" value="1" required/>
                 <label for="price1">$<label>
             </div>
             <div class="priceOption">
-                <input type="radio" name="answer" id="price2" value="2"/>
+                <input type="radio" name="answer" id="price2" value="2" required/>
                 <label for="price2">$$<label>
             </div>
             <div class="priceOption">
-                <input type="radio" name="answer" id="price3" value="3"/>
+                <input type="radio" name="answer" id="price3" value="3"required/>
                 <label for="price3">$$$<label>
             </div>
             <div class="priceOption">
-                <input type="radio" name="answer" id="price4" value="4"/>
+                <input type="radio" name="answer" id="price4" value="4" required/>
                 <label for="price4">$$$$<label>
             </div>
             <button type="submit" class="priceBtn formSubmit">Submit</button>
@@ -38,15 +38,7 @@
     </form>
     
     <section id="results" class="hidden">
-        <ul id="resultsList">
-
-        </ul>
-        <!-- <img class="barImg" src="" alt="Bar Image">
-        <h4 class="barName"></h4>
-        <img src="" alt="Bar rating">
-        <p class="barDescription"></p>
-        <a class="website" target="_blank" href="">Website</a>
-        <a class="addressLookUp" target="_blank" href="">Let's Barhop!</a> -->
+        <ul id="resultsList"></ul>
     </section>
 
     <section id="current" class="hidden">
