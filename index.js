@@ -11,7 +11,7 @@ const options = {
 	})
 }
 const params = {
-	'limit': 25,
+	'limit': 50,
 	'categories': 'bars',
 	'radius': 40000,
 	'latitude': null,
@@ -67,7 +67,9 @@ function sortResults(bizList) {
 }
 
 function renderResults(data){
+	//sorts the array of objects based distance closest to furthest.
 	const sortedData = sortResults(data)
+	//creates HTML to be added to DOM
 	const resultsHTML = createResultsHTML(sortedData);
 
 	$('#resultsList').html(resultsHTML);
@@ -82,8 +84,12 @@ function success(position) {
 	let lat = crd.latitude;
 	let lng = crd.longitude;
 
-	params.latitude = lat
-	params.longitude = lng
+	let priceVal = $('input[name=answer]:checked').val()
+console.log('priceeeee' + priceVal)
+	params.price = priceVal;
+	
+	params.latitude = lat;
+	params.longitude = lng;
 
 	console.log('Your current position is:');
   console.log(`Latitude : ${crd.latitude}`);
@@ -114,9 +120,10 @@ function error(err) {
 
 
 $(document).ready(function(){
-	$("#button").click(function(){
+	$(".priceForm").on('submit', function(e){
+		e.preventDefault()
 		navigator.geolocation.getCurrentPosition(success, error);
-		$('.buttonRes').addClass('hidden');
+		$('.priceForm').addClass('hidden');
 	});
 	
 });

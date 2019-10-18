@@ -12,9 +12,30 @@
         <h2 class="main-header">Ready to Barhop?</h2>
     </header>
 
-    <label for="button" class="buttonRes">Please note: Accepting location services is required in order to use this app. <br>
-        Press here to find bars nearest to you</label>
-    <input type="button" id="button" class="buttonRes" value="Find Bars"></input>
+    <form class="priceForm buttonRes">
+        <h3>Please note: Accepting location services is required in order to use this app. <br>
+            Select a price and press "Submit" to find bars nearest to you</h3>
+        <fieldset required>
+            <legend>Price-point: </legend>
+            <div class="priceOption">
+                <input type="radio" name="answer" id="price1" value="1"/>
+                <label for="price1">$<label>
+            </div>
+            <div class="priceOption">
+                <input type="radio" name="answer" id="price2" value="2"/>
+                <label for="price2">$$<label>
+            </div>
+            <div class="priceOption">
+                <input type="radio" name="answer" id="price3" value="3"/>
+                <label for="price3">$$$<label>
+            </div>
+            <div class="priceOption">
+                <input type="radio" name="answer" id="price4" value="4"/>
+                <label for="price4">$$$$<label>
+            </div>
+            <button type="submit" class="priceBtn formSubmit">Submit</button>
+        </fieldset>
+    </form>
     
     <section id="results" class="hidden">
         <ul id="resultsList">
