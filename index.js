@@ -91,11 +91,16 @@ function success(position) {
   console.log(`Longitude: ${crd.longitude}`);
 	console.log(`More or less ${crd.accuracy} meters.`);
 	
+	
 	//builds url based on params object
-	Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+	Object.keys(params).forEach(function (key) {
+		//clears searchParams object to avoid duplicating parameters
+		url.searchParams.delete(key);
+		//builds url with params
+		url.searchParams.append(key, params[key])})
 
 	//fetches the all-important object of nearby businesses
-	fetch(url, options)
+	fetch(url, options, params)
 		.then(res => res.json())
 		.then(data => {
 			console.log(data);
@@ -110,9 +115,6 @@ function error(err) {
 function renderCurrent(){
 	$('#results').addClass('hidden');
 	$('#current').removeClass('hidden');
-	//needs "call it a night early" button 
-	//needs "find next bar" button
-
 }
 
 function callUber(){
@@ -146,5 +148,8 @@ $(() => {
 	})
 	$('#current').on('click', '.nextBar', function(){
 		console.log("Attaboy! let's bounce!")
+		$('#current').addClass('hidden')
+		$('.holdPlease').removeClass('hidden');
+		navigator.geolocation.getCurrentPosition(success, error)
 	})
 })
