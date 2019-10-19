@@ -36,11 +36,11 @@ function createResultsHTML(biz){
 				<h4 class="barName">${index+1}. ${biz.name}</h4>
 				<p class="rating">Rating: ${biz.rating}/5 stars</p>
 				<p class="distance">${roundNumDistance}m Away</p>
-				<p class="price">Price: ${biz.price}</p>
+				<p class="price">${biz.price}</p>
 			</div>
 			<div class="bizBtns">
-				<a class="website" target="_blank" href="${biz.url}">Website</a>
-				<a class="addressLookUp" target="_blank" href="${gMapsUrl}${newAddress}">Let's Barhop!</a></li>
+				<a class="website btn" target="_blank" href="${biz.url}">Website</a>
+				<a class="addressLookUp btn" target="_blank" href="${gMapsUrl}${newAddress}">Let's Barhop!</a></li>
 			</div>`
 		})
 }
