@@ -1,73 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="styles.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <title>Barhop</title>
-</head>
-<body>
-    <header>
-        <h1 class="main-header">Barhop</h2>
-    </header>
-    <form class="priceForm container">
-        <div class="headings">
-            <h4>IMPORTANT: Accepting location services is required in order to use this app.</h3>
-            <h3 class="selectPrice">Select a price and press "Let's Barhop!" to find bars nearest to you</h4>
-        </div>
-       
-        <fieldset>
-            <legend>Price point:</legend>
-            <div class="priceOption">
-                <input type="radio" name="answer" id="price1" value="1" required/>
-                <label for="price1">$<label>
-            </div>
-            <div class="priceOption">
-                <input type="radio" name="answer" id="price2" value="2" required/>
-                <label for="price2">$$<label>
-            </div>
-            <div class="priceOption">
-                <input type="radio" name="answer" id="price3" value="3"required/>
-                <label for="price3">$$$<label>
-            </div>
-            <div class="priceOption">
-                <input type="radio" name="answer" id="price4" value="4" required/>
-                <label for="price4">$$$$<label>
-            </div>
-            <button type="submit" class="priceBtn formSubmit">Let's Barhop!</button>
-        </fieldset>
-    </form>
-    <h5 class="holdPlease hidden">Finding Nearby Bars...</h5>
-    <section id="results" class="container hidden">
-        <button class="changePriceBtn">Change Price</button>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="styles.css" type="text/css" />
+		<link
+			href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Barhop</title>
+	</head>
+	<body>
+		<header>
+			<h1 class="main-header">Barhop</h1>
+		</header>
+		<form class="priceForm container">
+			<div class="headings">
+				<h4>
+					IMPORTANT: Accepting location services is required in order
+					to use this app.
+				</h4>
+				<h3 class="selectPrice">
+					Select a price and press "Let's Barhop!" to find bars
+					nearest to you
+				</h3>
+			</div>
 
-        <ul id="resultsList"></ul>
-    </section>
+			<fieldset>
+				<legend>Price point:</legend>
+				<div class="priceOption">
+					<input
+						type="radio"
+						name="answer"
+						id="price1"
+						value="1"
+						required
+					/>
+					<label for="price1">$</label>
+				</div>
+				<div class="priceOption">
+					<input
+						type="radio"
+						name="answer"
+						id="price2"
+						value="2"
+						required
+					/>
+					<label for="price2">$$</label>
+				</div>
+				<div class="priceOption">
+					<input
+						type="radio"
+						name="answer"
+						id="price3"
+						value="3"
+						required
+					/>
+					<label for="price3">$$$</label>
+				</div>
+				<div class="priceOption">
+					<input
+						type="radio"
+						name="answer"
+						id="price4"
+						value="4"
+						required
+					/>
+					<label for="price4">$$$$</label>
+				</div>
+				<button type="submit" class="priceBtn formSubmit">
+					Let's Barhop!
+				</button>
+			</fieldset>
+		</form>
+		<h5 class="holdPlease hidden">Finding Nearby Bars...</h5>
+		<!-- By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL -->
+		<svg
+			class="holdPlease hidden"
+			width="45"
+			height="45"
+			viewBox="0 0 45 45"
+			xmlns="http://www.w3.org/2000/svg"
+			stroke="#fff"
+		>
+			<g
+				fill="none"
+				fill-rule="evenodd"
+				transform="translate(1 1)"
+				stroke-width="2"
+			>
+				<circle cx="22" cy="22" r="6" stroke-opacity="0">
+					<animate
+						attributeName="r"
+						begin="1.5s"
+						dur="3s"
+						values="6;22"
+						calcMode="linear"
+						repeatCount="indefinite"
+					/>
+					<animate
+						attributeName="stroke-opacity"
+						begin="1.5s"
+						dur="3s"
+						values="1;0"
+						calcMode="linear"
+						repeatCount="indefinite"
+					/>
+					<animate
+						attributeName="stroke-width"
+						begin="1.5s"
+						dur="3s"
+						values="2;0"
+						calcMode="linear"
+						repeatCount="indefinite"
+					/>
+				</circle>
+				<circle cx="22" cy="22" r="6" stroke-opacity="0">
+					<animate
+						attributeName="r"
+						begin="3s"
+						dur="3s"
+						values="6;22"
+						calcMode="linear"
+						repeatCount="indefinite"
+					/>
+					<animate
+						attributeName="stroke-opacity"
+						begin="3s"
+						dur="3s"
+						values="1;0"
+						calcMode="linear"
+						repeatCount="indefinite"
+					/>
+					<animate
+						attributeName="stroke-width"
+						begin="3s"
+						dur="3s"
+						values="2;0"
+						calcMode="linear"
+						repeatCount="indefinite"
+					/>
+				</circle>
+				<circle cx="22" cy="22" r="8">
+					<animate
+						attributeName="r"
+						begin="0s"
+						dur="1.5s"
+						values="6;1;2;3;4;5;6"
+						calcMode="linear"
+						repeatCount="indefinite"
+					/>
+				</circle>
+			</g>
+		</svg>
+		<section id="results" class="container hidden">
+			<button class="changePriceBtn">Change Price</button>
 
-    <section id="current" class="container hidden">
-        <div class="currentHeadings">
-            <h3>What would you like to do next?</h3>
-            <p>If you're ready to call an Uber, press: "Call it a night"</p>
-            If you want to keep the party going, press: "Find Next Bar!"</p>
-        </div>
-        
-        <div class="currentBtns">
-            <button class="goHome">Call it a night</button>
-            <button class="nextBar">Find Next Bar!</button>
-        </div>
-    </section>
+			<ul id="resultsList"></ul>
+		</section>
 
-    <section id="goHome" class="hidden">
+		<section id="current" class="container hidden">
+			<div class="currentHeadings">
+				<h3>What would you like to do next?</h3>
+				<p>If you're ready to call an Uber, press: "Call it a night"</p>
+				<p>
+					If you want to keep the party going, press: "Find Next Bar!"
+				</p>
+			</div>
 
-    </section>
+			<div class="currentBtns">
+				<button class="goHome">Call it a night</button>
+				<button class="nextBar">Find Next Bar!</button>
+			</div>
+		</section>
 
+		<section id="goHome" class="hidden"></section>
 
-
-
-
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="index.js"></script>
-</body>
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		<script src="index.js"></script>
+	</body>
 </html>
