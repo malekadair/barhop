@@ -72,7 +72,6 @@ function success(position) {
   let crd = position.coords;
 	let lat = crd.latitude;
 	let lng = crd.longitude;
-	console.log (crd + lat + lng)
 	//get's pricepoint based on user input and sets to appropriate variable
 	let priceVal = $('input[name=answer]:checked').val()
 
@@ -83,6 +82,9 @@ function success(position) {
 	params.latitude = lat;
 	params.longitude = lng;
 
+	console.log (params.latitude , params.longitude )
+	
+
 	//console log for my own reference while coding
 	console.log('Your current position is:');
   console.log(`Latitude : ${crd.latitude}`);
@@ -92,13 +94,13 @@ function success(position) {
 	//builds url based on params object
 	Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
-	//fetches all important object of nearby businesses
+	//fetches the all-important object of nearby businesses
 	fetch(url, options)
-			.then(res => res.json())
-			.then(data => {
-				console.log(data);
-				renderResults(data);
-			})
+		.then(res => res.json())
+		.then(data => {
+			console.log(data);
+			renderResults(data);
+		})
 }
 	
 function error(err) {
@@ -111,6 +113,11 @@ function renderCurrent(){
 	//needs "call it a night early" button 
 	//needs "find next bar" button
 
+}
+
+function callUber(){
+	console.log("calling uber")
+	window.open("https://m.uber.com/ul/", "_blank")
 }
 
 function changePrice (){
@@ -132,5 +139,12 @@ $(() => {
 	$('#results').on('click', '.changePriceBtn', function(){
 		console.log("change price button----ACTIVATE!")
 		changePrice();
+	})
+	$('#current').on('click', '.goHome', function() {
+		console.log("BOOOOO! you cant go home yet, the party's just starting!")
+		callUber();
+	})
+	$('#current').on('click', '.nextBar', function(){
+		console.log("Attaboy! let's bounce!")
 	})
 })
