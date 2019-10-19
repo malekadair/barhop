@@ -43,10 +43,65 @@ table {
 }
 
 /*Above this is only CSS Reset*/
+html { 
+  background: url(assets-bar/bar_bg.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+	background-size: cover;
+}
+
+body {
+	color: white;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 30px
+}
+body bar {
+  filter: brightness(50%);
+}
+.container {
+	display: flex;
+	/* border: white 3px solid; */
+	border-radius: 5px;
+	padding: 10px;
+	flex-direction: column;
+}
+
+/* div :hover {
+	border: white 2px solid;
+} */
+
+li {
+	display: flex;
+	border: white 1px solid;
+	justify-content: space-between;
+	padding: 5px;
+}
+
 
 .barImg {
-	width: 150px;
+	width: 80px;
+	height: 80px;
 }
+
+.bizText {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.bizBtns {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+
+}
+
+
+
+
 
 .hidden {
 	display: none;

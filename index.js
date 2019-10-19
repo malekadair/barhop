@@ -32,13 +32,16 @@ function createResultsHTML(biz){
 			let roundNumDistance = roundNumber(biz.distance)
 
 			return `<li><img class="barImg" id="barImg${index+1}" src="${biz.image_url}" alt="Bar Image">
-			<h4 class="barName">${index+1}. ${biz.name}</h4>
-			<p class="rating">Rating: ${biz.rating}</p>
-			<p class="distance">Distance: ${roundNumDistance} Meters</p>
-			<p class="price">Price: ${biz.price}</p>
-			<p class="barDescription"></p>
-			<a class="website" target="_blank" href="${biz.url}">Website</a>
-			<a class="addressLookUp" target="_blank" href="${gMapsUrl}${newAddress}">Let's Barhop!</a></li>`
+			<div class="bizText">
+				<h4 class="barName">${index+1}. ${biz.name}</h4>
+				<p class="rating">Rating: ${biz.rating}/5 stars</p>
+				<p class="distance">${roundNumDistance}m Away</p>
+				<p class="price">Price: ${biz.price}</p>
+			</div>
+			<div class="bizBtns">
+				<a class="website" target="_blank" href="${biz.url}">Website</a>
+				<a class="addressLookUp" target="_blank" href="${gMapsUrl}${newAddress}">Let's Barhop!</a></li>
+			</div>`
 		})
 }
 
