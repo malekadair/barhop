@@ -56,7 +56,6 @@ html {
 	line-height: 25px;
 	
 }
-	
 
 body {
 	color: white;
@@ -72,7 +71,6 @@ body {
 .selectPrice {
 	margin: 10px;
 }
-
 
 a {
 	color: white;
@@ -107,7 +105,6 @@ button {
 .changePriceBtn {
 	width: 200px;
 }
-
 
 li {
 	display: flex;
@@ -144,6 +141,7 @@ button:hover {
 .price {
 	float: right;
 }
+
 .bizBtns {
 	display: flex;
 	flex-direction: column;
@@ -195,11 +193,6 @@ h5 {
 	li{
 		flex-direction: row;
 		padding: 5px 15px;
-	}
-
-	.barImg{
-		/* width: 100px;
-		height: 100px; */
 	}
 
 	.bizText{
