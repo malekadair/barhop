@@ -3,6 +3,8 @@ const api_key = 'S8KmYElllBSl6MnACfDatQhts9YOS0_NwnSRThX8W2AlXKaMAM85JlHDrfEKfCk
 
 let url = new URL('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search')
 
+let budget = null;
+
 const options = {
 	method: 'GET',
 	headers: new Headers({
@@ -10,6 +12,7 @@ const options = {
 		'Content-Type': 'application/json'
 	})
 }
+
 const params = {
 	'limit': 50,
 	'categories': 'bars',
