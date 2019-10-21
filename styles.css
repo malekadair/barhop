@@ -84,7 +84,6 @@ a:hover {
 
 .container {
 	display: flex;
-	/* border: white 3px solid; */
 	border-radius: 5px;
 	padding: 10px;
 	flex-direction: column;
@@ -127,7 +126,6 @@ button:hover {
 	width: 100px;
 	height: 100px;
 	object-fit: cover;
-	/*flex-grow: 1;*/
 }
 
 .bizText {
@@ -136,8 +134,8 @@ button:hover {
 	justify-content: space-evenly;
 	flex-grow: 3;
 	text-align: center;
-	padding: 15px /*added this element*/;
-	line-height: 20px
+	padding: 15px;
+	line-height: 20px;
 }
 
 .price {
@@ -149,7 +147,6 @@ button:hover {
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	/* flex-grow: 2; remove this element */
 	border-top: 1px #ee4a3f solid;
 	padding: 10px 0 0 0;
 }

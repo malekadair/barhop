@@ -51,9 +51,7 @@ function createResultsHTML(biz){
 function createUrl(data){
 	//builds URL into format that can be added to google maps search
 	let addressUrl = $(data[0].location.display_address)
-	console.log(addressUrl)
 	let replacedAddress = encodeURIComponent(addressUrl[0]) + '%20'+ encodeURIComponent(addressUrl[1])
-	console.log(replacedAddress)
 	return replacedAddress;
 }
 
@@ -86,17 +84,7 @@ function success(position) {
 	
 	//sets lng/lat params to user's location
 	params.latitude = lat;
-	params.longitude = lng;
-
-	console.log (params.latitude , params.longitude )
-	
-
-	//console log for my own reference while coding
-	console.log('Your current position is:');
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-	console.log(`More or less ${crd.accuracy} meters.`);
-	
+	params.longitude = lng;	
 	
 	//builds url based on params object
 	Object.keys(params).forEach(function (key) {
@@ -109,7 +97,6 @@ function success(position) {
 	fetch(url, options, params)
 		.then(res => res.json())
 		.then(data => {
-			console.log(data);
 			renderResults(data);
 		})
 }
@@ -124,7 +111,6 @@ function renderCurrent(){
 }
 
 function callUber(){
-	console.log("calling uber")
 	window.open("https://m.uber.com/ul/", "_blank")
 }
 
@@ -141,19 +127,15 @@ $(() => {
 		$('.holdPlease').removeClass('hidden');
 	});
 	$('#results').on('click', '.addressLookUp', function(){
-		console.log('we made it this far. dont stop now!')
 		renderCurrent();
 	})
 	$('#results').on('click', '.changePriceBtn', function(){
-		console.log("change price button----ACTIVATE!")
 		changePrice();
 	})
 	$('#current').on('click', '.goHome', function() {
-		console.log("BOOOOO! you cant go home yet, the party's just starting!")
 		callUber();
 	})
 	$('#current').on('click', '.nextBar', function(){
-		console.log("Attaboy! let's bounce!")
 		$('#current').addClass('hidden')
 		$('.holdPlease').removeClass('hidden');
 		navigator.geolocation.getCurrentPosition(success, error)
