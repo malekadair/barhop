@@ -149,7 +149,7 @@ button:hover {
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	flex-grow: 2; /*remove this element*/
+	/* flex-grow: 2; remove this element */
 	border-top: 1px #ee4a3f solid;
 	padding: 10px 0 0 0;
 }
