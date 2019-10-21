@@ -1,5 +1,5 @@
 Name of project: Barhop
-Link to live app: https://heuristic-yalow-4e6f7e.netlify.com/
+Link to live app: https://malekadair.github.io/barhop/
 Screenshots:
 ![home](/assets-bar/screenshot:home.png?raw=true)
 ![loading](/assets-bar/screenshot:loading.png?raw=true)
