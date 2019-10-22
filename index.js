@@ -147,6 +147,8 @@ $(() => {
 	})
 	$('#current').on('click', '.goHome', function() {
 		callUber();
+		$('#current').addClass('hidden')
+		$('.priceForm').removeClass('hidden')
 	})
 	$('#current').on('click', '.nextBar', function(){
 		$('#current').addClass('hidden')
