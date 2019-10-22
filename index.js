@@ -112,7 +112,10 @@ function success(position) {
 }
 
 function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
+	console.warn(`ERROR(${err.code}): ${err.message}`)
+	alert (`Error: Something went wrong. Try again.`)
+	$('.priceForm').removeClass('hidden');
+	$('.holdPlease').addClass('hidden');
 }
 
 function renderCurrent(){
