@@ -68,7 +68,6 @@ function renderResults(data){
 	$('.holdPlease').addClass('hidden');
 	$('#resultsList').html(resultsHTML);
 	$('#results').removeClass('hidden');
-
 }
 
 function success(position) {
@@ -95,12 +94,23 @@ function success(position) {
 
 	//fetches the all-important object of nearby businesses
 	fetch(url, options, params)
-		.then(res => res.json())
-		.then(data => {
-			renderResults(data);
+		.then((res) => {
+			if (res.ok) {
+				return res.json();
+			} else {
+				throw new Error('Something went wrong');
+			}
 		})
+		.then(data => {
+			renderResults(data)
+		})
+		.catch(err => {
+			alert (`Error: No nearby bars found in this price range. Try a different price range.`)
+			$('.priceForm').removeClass('hidden');
+			$('.holdPlease').addClass('hidden');
+		});
 }
-	
+
 function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
